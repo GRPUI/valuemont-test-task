@@ -5,11 +5,10 @@ cursor = conn.cursor()
 
 
 def get_data() -> list:
-    cursor.execute("SELECT * FROM employees "
-                   "ORDER BY salary DESC "
-                   "LIMIT 1 "
-                   "OFFSET 1")
-    return cursor.fetchone()
+    cursor.execute("SELECT salary FROM employees "
+                   "WHERE salary = (SELECT salary FROM employees GROUP BY salary ORDER BY salary DESC LIMIT 1 OFFSET 1) "
+                   "LIMIT 1;")
+    return cursor.fetchall()
 
 
 if __name__ == '__main__':

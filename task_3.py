@@ -9,7 +9,7 @@ fake = Faker()
 
 
 def get_data() -> list:
-    cursor.execute("SELECT * FROM employees "
+    cursor.execute("SELECT name, last_name FROM employees "
                    "WHERE salary > 50000 "
                    "ORDER BY salary DESC "
                    "LIMIT 5")
