@@ -25,11 +25,11 @@ def fill_data() -> None:
 
 
 def get_data() -> list:
-    cursor.execute("""SELECT user_id, SUM(amount) as total_amount
+    cursor.execute("""SELECT user_id 
 FROM transactions
 WHERE timestamp >= date('now','-1 month')
 GROUP BY user_id
-HAVING total_amount > 1000;
+HAVING SUM(amount) > 1000;
 """)
     return cursor.fetchall()
 
