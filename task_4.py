@@ -8,7 +8,7 @@ def get_data() -> list:
     cursor.execute("SELECT salary FROM employees "
                    "WHERE salary = (SELECT salary FROM employees GROUP BY salary ORDER BY salary DESC LIMIT 1 OFFSET 1) "
                    "LIMIT 1;")
-    return cursor.fetchall()
+    return cursor.fetchone()
 
 
 if __name__ == '__main__':
